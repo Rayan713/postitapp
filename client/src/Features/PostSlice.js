@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import * as ENV from "../config";
+
 
 const initialState = {
   posts: [],
@@ -10,7 +12,8 @@ const initialState = {
 //thunkk for saving the post
 export const savePost = createAsyncThunk("posts/savePost", async (postData) => {
   try {
-    const response = await axios.post("http://localhost:3001/savePost", {
+    //const response = await axios.post("http://localhost:3001/savePost", {
+    const response = await axios.post(`${ENV.SERVER_URL}/savePost`,{
       postMsg: postData.postMsg,
       email: postData.email,
     });
